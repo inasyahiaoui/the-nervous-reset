@@ -4,23 +4,31 @@ const NAV_ITEMS = [
   { label: "The Resets", href: "#resets" },
   { label: "Check-In", href: "#check-in" },
   { label: "How It Works", href: "#how-it-works" },
+  { label: "About", href: "#about" },
 ] as const;
 
 /**
- * Footer — minimal, editorial.
- * The closing frame of the film.
+ * Footer — $5,000 minimal editorial closing frame.
+ * Premium glass border top, refined typography.
  */
 export default function Footer() {
   return (
     <footer
-      className="relative overflow-hidden border-t"
+      className="relative overflow-hidden"
       style={{
         background: "var(--color-black)",
-        borderColor: "rgba(245,240,232,0.04)",
+        borderTop: "1px solid rgba(245,240,232,0.04)",
       }}
     >
+      {/* Subtle gold accent line */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px"
+        style={{ background: "linear-gradient(to right, transparent, rgba(232,212,77,0.12), transparent)" }}
+        aria-hidden="true"
+      />
+
       <div className="container-content flex flex-col items-center gap-8 px-5 py-10 sm:gap-10 sm:px-6 sm:py-14 md:flex-row md:items-start md:justify-between md:py-16">
-        {/* Wordmark + tagline */}
+        {/* Wordmark + tagline — premium */}
         <div className="flex flex-col items-center gap-3.5 md:items-start">
           <Link
             href="/"
@@ -41,7 +49,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Nav links */}
+        {/* Nav links — premium hover */}
         <nav
           className="flex flex-col items-center gap-2.5 md:items-start"
           aria-label="Footer"
@@ -50,7 +58,7 @@ export default function Footer() {
             <a
               key={item.href}
               href={item.href}
-              className="text-[0.8125rem] transition-colors duration-400 hover:text-ivory"
+              className="text-[0.8125rem] transition-all duration-500 hover:text-ivory"
               style={{ color: "rgba(245,240,232,0.3)" }}
             >
               {item.label}
@@ -58,7 +66,7 @@ export default function Footer() {
           ))}
         </nav>
 
-        {/* Legal + copyright */}
+        {/* Legal + copyright — premium */}
         <div className="flex flex-col items-center gap-2.5 md:items-end">
           <div
             className="flex items-center gap-4 text-[0.75rem]"
@@ -67,14 +75,14 @@ export default function Footer() {
             <span
               role="link"
               aria-disabled="true"
-              className="cursor-default"
+              className="cursor-default transition-colors duration-400 hover:text-ivory/40"
             >
               Privacy
             </span>
             <span
               role="link"
               aria-disabled="true"
-              className="cursor-default"
+              className="cursor-default transition-colors duration-400 hover:text-ivory/40"
             >
               Terms
             </span>

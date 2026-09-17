@@ -4,8 +4,10 @@ import "./globals.css";
 /**
  * Root Layout — The Nervous Reset
  *
- * Fonts loaded via Google Fonts <link> tags for build stability.
- * This avoids the next/font/google Turbopack resolution issue.
+ * Premium font system loaded via Google Fonts <link> tags.
+ * DM Sans for body (clean, modern, highly readable).
+ * Playfair Display for display headlines (luxury serif).
+ * JetBrains Mono for monospace labels (crisp, premium).
  */
 export const metadata: Metadata = {
   title: {
@@ -30,8 +32,9 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Premium font stack: DM Sans + Playfair Display + JetBrains Mono */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
       </head>

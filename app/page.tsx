@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation/Navigation";
 import Hero from "@/components/hero/Hero";
 import BrandStory from "@/components/brand-story/BrandStory";
+import JourneyVisual from "@/components/journey-visual/JourneyVisual";
 import Resets from "@/components/resets/Resets";
 import CheckIn from "@/components/check-in/CheckIn";
 import HowItWorks from "@/components/how-it-works/HowItWorks";
@@ -12,6 +13,9 @@ import Footer from "@/components/footer/Footer";
  *
  * Editorial single-page composition.
  * One continuous experience with atmospheric transitions.
+ *
+ * Flow: Hero → BrandStory/About → 21-Day Journey → Resets →
+ *       Check-In + How It Works → Final CTA → Footer
  */
 export default function Home() {
   return (
@@ -31,6 +35,17 @@ export default function Home() {
       </div>
 
       <BrandStory />
+
+      <div className="relative h-16 sm:h-20 md:h-24" aria-hidden="true">
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(to bottom, var(--color-black), transparent 30%, transparent 70%, var(--color-black))",
+        }} />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="rule-animated" style={{ maxWidth: "10rem" }} />
+        </div>
+      </div>
+
+      <JourneyVisual />
 
       <div className="relative h-16 sm:h-20 md:h-24" aria-hidden="true">
         <div className="absolute inset-0" style={{

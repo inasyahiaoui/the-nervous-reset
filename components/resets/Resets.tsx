@@ -5,7 +5,7 @@ import ResetCard from "./ResetCard";
 import { RESET_PRODUCTS } from "@/data/resets";
 
 /**
- * Five Resets — curated editorial grid.
+ * Five Resets — $5,000 curated editorial grid.
  *
  * NOT a carousel. NOT identical cards.
  * A magazine-style product index where each entry
@@ -13,6 +13,7 @@ import { RESET_PRODUCTS } from "@/data/resets";
  *
  * Hero product (first) is full-width.
  * Remaining four in a 2-column grid.
+ * Premium glass panels, gradient borders, 4K imagery.
  */
 export default function Resets() {
   const hero = RESET_PRODUCTS[0];
@@ -21,38 +22,45 @@ export default function Resets() {
   return (
     <section
       id="resets"
-      className="relative overflow-hidden py-20 sm:py-24 md:py-32 lg:py-40"
+      className="relative overflow-hidden py-24 sm:py-28 md:py-36 lg:py-44"
       style={{ background: "var(--color-black)" }}
     >
+      {/* Background ambient dots — premium */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="pulse-dot absolute top-[15%] right-[10%] w-[3px] h-[3px] rounded-full" style={{ background: "rgba(232,212,77,0.15)", animationDelay: "0s" }} />
+        <div className="pulse-dot absolute bottom-[20%] left-[5%] w-[2px] h-[2px] rounded-full" style={{ background: "rgba(245,240,232,0.1)", animationDelay: "2.5s" }} />
+        <div className="pulse-dot absolute top-[60%] right-[25%] w-[2px] h-[2px] rounded-full" style={{ background: "rgba(232,212,77,0.08)", animationDelay: "4s" }} />
+      </div>
+
       <div className="container-content relative z-10">
-        {/* Header */}
+        {/* Header — premium editorial */}
         <Reveal>
-          <div className="mb-12 sm:mb-16 md:mb-20 flex flex-col items-start gap-4 sm:gap-5">
+          <div className="mb-14 sm:mb-18 md:mb-22 flex flex-col items-start gap-5 sm:gap-6">
             <span
-              className="meta"
-              style={{ color: "rgba(245,240,232,0.25)" }}
+              className="meta shimmer-gold"
+              style={{ color: "rgba(245,240,232,0.28)", fontSize: "0.875rem" }}
             >
               Five Resets
             </span>
-            <h2 className="display max-w-[18ch] text-[clamp(1.75rem,5vw,3.25rem)]" style={{ color: "var(--color-ivory)" }}>
+            <h2 className="display max-w-[18ch] text-[clamp(2rem,5.5vw,3.75rem)]" style={{ color: "var(--color-ivory)" }}>
               Choose what you{" "}
               <span className="hidden sm:inline">need most.</span>
               <span className="sm:hidden">need.</span>
             </h2>
             <p
-              className="max-w-[36ch] text-[0.875rem] sm:text-[1rem]"
+              className="max-w-[36ch] text-[1rem] sm:text-[1.125rem]"
               style={{
-                color: "rgba(245,240,232,0.35)",
+                color: "rgba(245,240,232,0.4)",
                 lineHeight: "1.75",
               }}
             >
               Each Reset is a focused 21-day journey built around one
-              specific struggle. Find yours.
+              specific struggle. One dollar a day. Find yours.
             </p>
           </div>
         </Reveal>
 
-        {/* ── Grid Layout ── */}
+        {/* ── Grid Layout — premium card system ── */}
         <div className="flex flex-col gap-3 sm:gap-4">
           {/* Hero product — full width */}
           <Reveal delay={40}>
@@ -71,13 +79,31 @@ export default function Resets() {
           </div>
         </div>
 
+        {/* Prominent 21-day value reminder — glass panel */}
         <Reveal delay={280}>
-          <p
-            className="mt-10 sm:mt-12 meta"
-            style={{ color: "rgba(245,240,232,0.12)" }}
-          >
-            21 days · $21 total · No subscription
-          </p>
+          <div className="mt-12 sm:mt-14 flex flex-col items-center gap-4">
+            <div
+              className="glass-panel inline-flex flex-col items-center gap-3 px-8 py-5 sm:px-10 sm:py-6"
+              style={{ borderRadius: "var(--radius-xl)" }}
+            >
+              <div className="flex items-center gap-5">
+                <span className="meta pulse-dot" style={{ color: "rgba(245,240,232,0.22)", fontSize: "0.875rem", animationDelay: "0s" }}>
+                  21 days
+                </span>
+                <span className="pulse-wave" style={{ width: "24px", height: "1px", background: "rgba(232,212,77,0.1)", display: "inline-block" }} aria-hidden="true" />
+                <span className="meta pulse-dot" style={{ color: "rgba(245,240,232,0.22)", fontSize: "0.875rem", animationDelay: "1s" }}>
+                  $21 total
+                </span>
+                <span className="pulse-wave" style={{ width: "24px", height: "1px", background: "rgba(232,212,77,0.1)", display: "inline-block", animationDelay: "0.5s" }} aria-hidden="true" />
+                <span className="meta pulse-text" style={{ color: "var(--color-signal)", opacity: 0.45, fontSize: "0.875rem" }}>
+                  ≈ $1 / day
+                </span>
+              </div>
+              <p className="meta" style={{ color: "rgba(245,240,232,0.12)", fontSize: "0.6875rem", letterSpacing: "0.15em" }}>
+                No subscription · Cancel anytime
+              </p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,57 +1,115 @@
-import Link from "next/link";
+"use client";
+
+import { useState, useCallback } from "react";
 import MobileMenu from "./MobileMenu";
 
 const NAV_ITEMS = [
   { label: "The Resets", href: "#resets" },
   { label: "Check-In", href: "#check-in" },
   { label: "How It Works", href: "#how-it-works" },
+  { label: "About", href: "#about" },
 ] as const;
 
 /**
- * Navigation — floating premium glass interface.
- * Entrance animation, refined glass, elegant hover states.
+ * Navigation — $5,000 floating glass bar.
+ *
+ * Minimal, editorial. Premium glassmorphism with subtle gradient border.
+ * Four desktop links, mobile hamburger with smooth morph.
+ * Active state via IntersectionObserver (optional enhancement).
  */
 export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLinkClick = useCallback(() => setIsOpen(false), []);
+
   return (
-    <header
-      className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4 hero-fade-in"
-      style={{ animationDelay: "0.2s" }}
-    >
+    <>
       <nav
-        className="glass-nav mx-auto flex h-[2.75rem] max-w-[64rem] items-center justify-between rounded-full px-4 sm:h-[3rem] sm:px-6 md:h-[3.25rem] md:px-8"
-        aria-label="Primary"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-4 sm:px-6"
+        role="navigation"
+        aria-label="Main"
       >
-        {/* Wordmark */}
-        <Link href="/" aria-label="The Nervous Reset home" className="wordmark">
-          THE NERVOUS RESET
-        </Link>
+        <div
+          className="glass-nav mt-4 flex w-full max-w-[60rem] items-center justify-between rounded-full px-4 sm:px-6 transition-all duration-700"
+          style={{
+            height: "3rem",
+          }}
+        >
+          {/* Wordmark */}
+          <a
+            href="#hero"
+            className="wordmark"
+            aria-label="The Nervous Reset home"
+          >
+            THE NERVOUS RESET
+          </a>
 
-        {/* Desktop links */}
-        <div className="hidden items-center gap-8 lg:flex">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="nav-link text-[0.8125rem] font-medium"
-              style={{ letterSpacing: "0.03em" }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
+          {/* Desktop links */}
+          <div className="hidden items-center gap-7 md:flex">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="nav-link"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden lg:flex">
+          {/* Desktop CTA */}
           <a
             href="#check-in"
-            className="btn-primary !h-8 !min-h-0 !text-[0.8125rem] !px-5"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-[0.8125rem] font-semibold transition-all duration-500 hover:scale-[1.03]"
+            style={{
+              background: "var(--color-signal)",
+              color: "var(--color-gold-ink)",
+              boxShadow: "0 2px 16px rgba(232,212,77,0.15)",
+            }}
           >
-            Take the Check-In
+            Begin
           </a>
-        </div>
 
-        <MobileMenu />
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            <span
+              className="block h-[1.5px] w-5 rounded-full transition-all duration-300"
+              style={{
+                background: "var(--color-ivory)",
+                transform: isOpen
+                  ? "translateY(3.25px) rotate(45deg)"
+                  : "none",
+              }}
+            />
+            <span
+              className="block h-[1.5px] w-5 rounded-full transition-all duration-300"
+              style={{
+                background: "var(--color-ivory)",
+                opacity: isOpen ? 0 : 1,
+                transform: isOpen ? "scaleX(0)" : "scaleX(1)",
+              }}
+            />
+            <span
+              className="block h-[1.5px] w-5 rounded-full transition-all duration-300"
+              style={{
+                background: "var(--color-ivory)",
+                transform: isOpen
+                  ? "translateY(-3.25px) rotate(-45deg)"
+                  : "none",
+              }}
+            />
+          </button>
+        </div>
       </nav>
-    </header>
+
+      <MobileMenu isOpen={isOpen} onLinkClick={handleLinkClick} />
+    </>
   );
 }
